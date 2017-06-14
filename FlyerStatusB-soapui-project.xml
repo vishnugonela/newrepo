@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="FlyerStatusB" resourceRoot="" soapui-version="5.0.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="200508" name="FlyerStatusBPELProcessBinding" type="wsdl" bindingName="{http://xmlns.oracle.com/Common/FlyerStatusB/FlyerStatusBPELProcess}FlyerStatusBPELProcessBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:7101/soa-infra/services/default/FlyerStatusB/flyerstatusbpelprocess_client_ep?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://localhost:7101/soa-infra/services/default/FlyerStatusB/flyerstatusbpelprocess_client_ep</con:endpoint></con:endpoints><con:operation isOneWay="false" action="process" name="process" bindingOperationName="process" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1" useWsAddressing="true"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:7101/soa-infra/services/default/FlyerStatusB/flyerstatusbpelprocess_client_ep</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:fly="http://xmlns.oracle.com/Common/FlyerStatusB/FlyerStatusBPELProcess">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <fly:process>
+         <fly:input>GOLD</fly:input>
+      </fly:process>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="process"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="FlyerStatusBPELProcessCallbackBinding" type="wsdl" bindingName="{http://xmlns.oracle.com/Common/FlyerStatusB/FlyerStatusBPELProcess}FlyerStatusBPELProcessCallbackBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:7101/soa-infra/services/default/FlyerStatusB/flyerstatusbpelprocess_client_ep?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:7101/soa-infra/services/default/FlyerStatusB/flyerstatusbpelprocess_client_ep?WSDL"><con:part><con:url>http://localhost:7101/soa-infra/services/default/FlyerStatusB/flyerstatusbpelprocess_client_ep?WSDL</con:url><con:content><![CDATA[<wsdl:definitions name="FlyerStatusBPELProcess" targetNamespace="http://xmlns.oracle.com/Common/FlyerStatusB/FlyerStatusBPELProcess" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:client="http://xmlns.oracle.com/Common/FlyerStatusB/FlyerStatusBPELProcess" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:documentation>
+    <abstractWSDL>http://localhost:7101/soa-infra/services/default/FlyerStatusB!1.0/FlyerStatusBPELProcess.wsdl</abstractWSDL>
+  </wsdl:documentation>
+  <plnk:partnerLinkType name="FlyerStatusBPELProcess">
+    <plnk:role name="FlyerStatusBPELProcessRequester" portType="client:FlyerStatusBPELProcessCallback"/>
+    <plnk:role name="FlyerStatusBPELProcessProvider" portType="client:FlyerStatusBPELProcess"/>
+  </plnk:partnerLinkType>
+  <wsp:Policy wsu:Id="wsaddr_policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy">
+    <wsaw:UsingAddressing xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"/>
+  </wsp:Policy>
+  <wsdl:types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema">
+      <import namespace="http://xmlns.oracle.com/Common/FlyerStatusB/FlyerStatusBPELProcess" schemaLocation="http://localhost:7101/soa-infra/services/default/FlyerStatusB/flyerstatusbpelprocess_client_ep?XSD=xsd/FlyerStatusBPELProcess.xsd"/>
+    </schema>
+  </wsdl:types>
+  <wsdl:message name="FlyerStatusBPELProcessRequestMessage">
+    <wsdl:part name="payload" element="client:process"/>
+  </wsdl:message>
+  <wsdl:message name="FlyerStatusBPELProcessResponseMessage">
+    <wsdl:part name="payload" element="client:processResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="FlyerStatusBPELProcess">
+    <wsdl:operation name="process">
+      <wsdl:input message="client:FlyerStatusBPELProcessRequestMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="FlyerStatusBPELProcessCallback">
+    <wsdl:operation name="processResponse">
+      <wsdl:input message="client:FlyerStatusBPELProcessResponseMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="FlyerStatusBPELProcessBinding" type="client:FlyerStatusBPELProcess">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsp:PolicyReference URI="#wsaddr_policy" wsdl:required="false" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"/>
+    <wsdl:operation name="process">
+      <soap:operation style="document" soapAction="process"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="FlyerStatusBPELProcessCallbackBinding" type="client:FlyerStatusBPELProcessCallback">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="processResponse">
+      <soap:operation style="document" soapAction="processResponse"/>
+      <wsdl:input>
+        <soap:body use="literal" namespace="http://xmlns.oracle.com/Common/FlyerStatusB/FlyerStatusBPELProcess"/>
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="flyerstatusbpelprocess_client_ep">
+    <wsdl:port name="FlyerStatusBPELProcess_pt" binding="client:FlyerStatusBPELProcessBinding">
+      <soap:address location="http://localhost:7101/soa-infra/services/default/FlyerStatusB/flyerstatusbpelprocess_client_ep"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://localhost:7101/soa-infra/services/default/FlyerStatusB/flyerstatusbpelprocess_client_ep?XSD=xsd/FlyerStatusBPELProcess.xsd</con:url><con:content><![CDATA[<schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://xmlns.oracle.com/Common/FlyerStatusB/FlyerStatusBPELProcess" xmlns="http://www.w3.org/2001/XMLSchema">
+  <element name="process">
+    <complexType>
+      <sequence>
+        <element name="input" type="string"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="processResponse">
+    <complexType>
+      <sequence>
+        <element name="result" type="string"/>
+      </sequence>
+    </complexType>
+  </element>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints/><con:operation isOneWay="false" action="processResponse" name="processResponse" bindingOperationName="processResponse" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:fly="http://xmlns.oracle.com/Common/FlyerStatusB/FlyerStatusBPELProcess">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <fly:processResponse>
+         <fly:result>?</fly:result>
+      </fly:processResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="processResponse"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>
